@@ -1,0 +1,45 @@
+// Sass Variables
+
+// use var when you (think) need to define it to more than one place
+
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f3f3f3;
+$color-grey-light-2: #eee;
+$color-grey-light-3: #c5c5c5;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+$color-green: #008000;
+
+// FONT
+$font-size-default: 1.6rem;
+
+// BTN
+$box-shadow-btn-hover: 0 1rem 2rem rgba($color-black, .2);
+$box-shadow-btn-active: 0 .5rem 1rem rgba($color-black, .2);
+
+// CARD
+$box-shadow-card: 0 1.5rem 4rem rgba($color-black, .15);
+
+// GRID
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
+
+// BORDERS
+$border-radius-default: .3rem;

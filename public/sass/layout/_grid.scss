@@ -1,0 +1,79 @@
+.row {
+    // standard width
+    // if smaller
+    max-width: $grid-width;
+    // background-color: #eee;
+    // center block element inside another
+    margin: 0 auto;
+    padding: 0 5rem;
+    
+    // row:not()
+    // select everything except last-child
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include clearfix;
+
+    // ^ = all class attr starting with
+    // * = end with
+    // $ = contain
+    [class^="col-"] {
+        // background-color: orangered;
+        float: left;
+
+        // gutter (space) to all but the last column of the row
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+    .col-1-of-2 {
+        // full width - gutter / 2
+        // sass var with # and {}
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        // full width - 2 * gutters / 3
+        // sass var with # and {}
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        // 2 times above column + a gutter
+        // sass var with # and {}
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        // full width - 3 * gutters / 4
+        // sass var with # and {}
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        // 2 times above column + a gutter
+        // sass var with # and {}
+        width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        // 3 times above 1-of-4 column + 2 gutters
+        // sass var with # and {}
+        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+    }
+}

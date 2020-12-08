@@ -1,0 +1,121 @@
+// Typography rules
+
+/* inheritance inside body */
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    /* font size default is usually 16px */
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: $color-grey-dark;
+}
+
+/* h1 */
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    /* animation hack fix (shaking) */
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+
+    &--main {
+        /* span are inline by default */
+        /* full width and linebreaks */
+        display: block;
+        /* change default h1 */
+        font-size: rem(60);
+        /* thickness */
+        font-weight: 400;
+        /* spacing between each letter */
+        letter-spacing: 3.5rem;
+        /* keyframe name */
+        /* shortcut */
+        animation: moveInLeftH1 2s ease-out;
+
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: rem(50);
+        }
+
+        /* animation-name: moveInLeft; */
+        /* animation-duration: 2s; */
+        /* https://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp */
+        /* animation-timing-function: ease; */
+    
+        /* repeat the animation */
+        /* animation-iteration-count: 3; */
+    
+        /* delay the animation */
+        /* animation-delay: 3s; */
+    }
+    
+    &--sub {
+        /* full width and linebreaks */
+        display: block;
+        /* change default h1 */
+        font-size: rem(20);
+        /* default 700 thickness */
+        font-weight: 700;
+        /* spacing to match width of the primary main */
+        letter-spacing: 1.6rem;
+        /* keyframe name */
+        /* shortcut */
+        /* name, duration, timing */
+        animation: moveInRightH1 2s ease-out;
+
+        @include respond(phone) {
+            letter-spacing: .5rem;
+        }
+    }
+
+}
+
+// h2
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    // width of the content not the container
+    display: inline-block;
+    // gradient
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    // cut everything outside the text
+    -webkit-background-clip: text;
+    // transparent text to see the gradient
+    color: transparent;
+    letter-spacing: .2rem;
+    transition: all .2s;
+    // z-index
+    position: relative;
+
+    @include respond(tab-port) {
+        font-size: 3rem;
+    }
+
+    @include respond(phone) {
+        font-size: 2.5rem;
+    }
+
+    &:hover {
+        // distort and scale
+        transform: skewY(2deg) skewX(10deg) scale(1.1);
+        // leave a shadow, 20% opacity
+        text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+    }
+}
+
+// h3
+.heading-tertiary {
+    font-size: $font-size-default;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: $font-size-default;
+
+    // margin bottom all paragraphs except the last
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}

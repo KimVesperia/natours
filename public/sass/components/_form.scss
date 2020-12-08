@@ -1,0 +1,132 @@
+// FORM
+.form {
+    &__group:not(:last-child) {
+        margin-bottom: 2rem;
+
+    }
+
+    &__input {
+        // input element needs to inherit font properties
+        font-family: inherit;
+        color: inherit;
+        font-size: 1.5rem;
+        // more on the side
+        padding: 1.5rem 2rem;
+        border-radius: $border-radius-default;
+        background-color: rgba($color-white, .5);
+        border: none;
+        // transparent border for the focus
+        border-bottom: .3rem solid transparent;
+        // linebreak for labels
+        display: block;
+        width: 90%;
+        transition: all .3s;
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: $box-shadow-btn-hover;
+            border-bottom: .3rem solid $color-primary;
+
+            // input validation
+            &:invalid {
+                border-bottom: .3rem solid $color-secondary-dark;
+            }
+        }
+
+        // pseudo element
+        // style the placeholder
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-2;
+        }
+
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: .7rem 2rem 0 2rem;
+        // margin-top: .7rem;
+        // margin-left: 2rem;
+        display: block;
+        width: 90%;
+        transition: all .3s;
+    }
+
+    // first/adjacent sibling selector = +
+    // general sibling selector = ~
+    // if placeholder is shown then label will:
+    &__input:placeholder-shown + &__label {
+        // cannot animate visiblity
+        // need visiblity to make hidden
+        opacity: 0;
+        visibility: hidden;
+        // push down
+        transform: translateY(-4rem);
+    }
+
+    // hide the real btn
+    &__radio-input {
+        display: none;
+    }
+
+    &__radio-group {
+        // side by side
+        width: 49%;
+        display: inline-block;
+
+        @include respond(tab-port) {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__radio-label {
+        font-size: $font-size-default;
+        cursor: pointer;
+        // for the custom btn
+        position: relative;
+        padding-left: 4rem;
+    }
+
+    // custom radio btn
+    &__radio-btn {
+        // outside rim circle
+        height: 3rem;
+        width: 3rem;
+        border: .5rem solid $color-primary;
+        border-radius: 50%;
+        // block for properties
+        display: inline-block;
+        // position
+        position: absolute;
+        left: 0;
+        top: -.5rem;
+
+        // dot
+        &::after {
+            // must
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0;
+            transition: all .2s;
+        }
+    }
+
+    // if invisible check is checked, then go to the child label and inside to the span child
+    // ~ = target a sibling
+    &__radio-input:checked ~ &__radio-label &__radio-btn::after {
+        opacity: 1;
+    }
+}

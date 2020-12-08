@@ -1,0 +1,85 @@
+// COMPOSITION
+
+.composition {
+
+    position: relative;
+
+    @include respond(tab-port) {
+        @include padding-Xside(3rem);
+    }
+
+    &__photo {
+        // always define width of img with % for scaling
+        // flexible img
+        width: 55%;
+        // x - y - blur - opac
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: $border-radius-default;
+        // reference first relative
+        position: absolute;
+        transition: all .2s;
+        // outline padding
+        outline-offset: 2rem;
+
+        @include respond(tab-port) {
+            float: left;
+            position: relative;
+            width: 33.33333333%;
+            box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
+        }
+
+        // use % for x axis
+        // photo 1
+        &--p1 {
+            left: 0;
+            top: -2rem;
+
+            @include respond(tab-port) {
+                top: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        // photo 2
+        &--p2 {
+            right: 0;
+            top: 2rem;
+
+            @include respond(tab-port) {
+                top: -1rem;
+                transform: scale(1.3);
+                z-index: 100;
+            }
+        }
+
+        // photo 3
+        &--p3 {
+            left: 20%;
+            top: 10rem;
+
+            @include respond(tab-port) {
+                top: 1rem;
+                left: 0;
+                transform: scale(1.1);
+            }
+        }
+
+        &:hover {
+            // outlines do not take up space unlike borders
+            outline: 1.5rem solid $color-primary;
+            transform: scale(1.05) translateY(-.5rem);
+            box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
+            // on top
+            z-index: 5;
+        }
+
+    }
+
+    // when you hover the container but not the current img
+    // composition:hover composition__photo:not(:hover)
+    &:hover &__photo:not(:hover) {
+        // smaller when not hover
+        transform: scale(.95);
+    }
+
+}

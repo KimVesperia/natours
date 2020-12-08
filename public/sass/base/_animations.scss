@@ -1,0 +1,87 @@
+// Animations
+
+/* KEYFRAMES */
+
+// for btt
+@keyframes moveInbtt {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        transform: translateX(15rem);
+    }
+
+    80% {
+        /* transform: translateX(0px); */
+    }
+
+    100% {
+        /* default final state */
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInLeftH1 {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        opacity: 1;
+        /* default final state */
+        transform: translateX(0);
+    }
+
+    100% {
+        /* opacity: 1; */
+        /* transform: translate(0); */
+    }
+}
+
+@keyframes moveInRightH1 {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        opacity: 0;
+        transform: translateX(5rem);
+    }
+
+    80% {
+        /* transform: translateX(0px); */
+    }
+
+    100% {
+        opacity: 1;
+        /* default final state */
+        transform: translate(0);
+    }
+}
+
+// for logo
+@keyframes scaleZoom {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes moveInBottom {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+
+    100% {
+        opacity: 1;
+        /* default final state */
+        transform: translate(0);
+    }
+}

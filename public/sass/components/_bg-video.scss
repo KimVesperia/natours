@@ -1,0 +1,20 @@
+// BACKGROUND VIDEO
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    // hide behind the main bg
+    z-index: 0;
+    overflow: hidden;
+    opacity: .15;
+
+    &__content {
+        height: inherit;
+        width: inherit;
+        // fill the parent and maintain aspect ratio
+        object-fit: cover;
+    }
+}

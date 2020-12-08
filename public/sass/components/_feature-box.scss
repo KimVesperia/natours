@@ -1,0 +1,41 @@
+// FEATURE BOX
+
+.feature-box {
+    background-color: rgba($color-white, .8);
+    font-size: 1.5rem;
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: $border-radius-default;
+    box-shadow: $box-shadow-card;
+    transition: all .1s;
+
+    @include respond(tab-port) {
+        padding: 2rem;
+    }
+
+
+    &__icon {
+        font-size: 6rem;
+        // display inline-block to add margin
+        display: inline-block;
+        margin-bottom: .5rem;
+        // color effect
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+        -webkit-background-clip: text;
+        color: transparent;
+
+        @include respond(tab-port) {
+            margin-bottom: 0;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+    }
+
+    // not needed because inherited
+    &__text {
+        
+    }
+
+}

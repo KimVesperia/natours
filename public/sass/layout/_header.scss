@@ -1,0 +1,91 @@
+// Header
+
+.header {
+    /* viewport */
+    height: 85vh;
+    /* ../ means 1 folder up */
+    /* gradient left to right */
+    /* set opacity to filter the image with the colors */
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, .8), rgba($color-primary-dark, .8)), url(../img/hero-small.jpg);
+    background-attachment: fixed;
+    /* fit the element inside the box */
+    background-size: cover;
+    /* top stays the same after resize */
+    background-position: top;
+    /* position relative to define the child absolute */
+    position: relative;
+    /* The clip-path property allows you to make complex shapes in CSS by clipping an element to a basic shape */
+    /* start in top left, x = left to right, y = top to bottom */
+    /* https://bennettfeely.com/clippy/ */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75vh, 0% 100%);
+
+    // if supports then apply:
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75vh, 0% 100%);
+        height: 95vh;
+    }
+
+    // retina screen
+    // apply when higher than dpi and larger than screen width:
+    // OR higher screen width than 2000px:
+    // Example PX to EM = 2000px/16 = 125em
+    // 600px = 37.5em
+    // Display big img when retina and bigger than phones or screen bigger than 1200px (75em)
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (min-width: 75em) {
+        background-image: linear-gradient(to right bottom, rgba($color-primary-light, .8), rgba($color-primary-dark, .8)), url(../img/hero.jpg);
+    }
+
+    @include respond(tab-land) {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 80vh, 0% 100%);
+    }
+
+    @include respond(tab-port) {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 85vh, 0% 100%);
+    }
+
+    // & = copy the current selector
+    /* container for the logo */
+    &__logo-box {
+        /* parent (header) must be relative to add reference */
+        position: absolute;
+        top: 7rem;
+        left: 7rem;
+
+        @include respond(tab-port) {
+            top: 5rem;
+            left: 4rem;
+        }
+
+        @include respond(phone) {
+            top: 4rem;
+            left: 3rem;
+        }
+    }
+
+    /* logo img */
+    &__logo {
+        /* resize the img, width auto by the browser */
+        height: 3.5rem;
+        cursor: pointer;
+
+        /* logo animation hover */
+        &:hover {
+            @include zoom-logo;
+        }
+    }
+
+    &__text-box {
+        /* parent (header) must be relative to add reference */
+        position: absolute;
+        /* center, element will start at: */
+        top: 40%;
+        left: 50%;
+        /* shift element itself and not the parent*/
+        /* half of the width and height */
+        /* element will now be centered and not start at the above cooardinates */
+        transform: translate(-50%, -50%);
+
+        /* center the btn */
+        text-align: center;
+    }
+}

@@ -1,0 +1,48 @@
+/* scroll to top btn, hide by default */
+// wrapper
+.btt {
+    // relative for the footer effect
+    position: relative;
+}
+
+.btt__sticky {
+
+    &,
+    &:link,
+    &:visited {
+        opacity: .5;
+        bottom: 5%;
+        right: 5%;
+        position: fixed;
+        background-color: rgba($color-black, .2);
+        padding: .5rem;
+        border: .1rem solid rgba($color-black, .5);
+        // remove txt height
+        line-height: 0;
+        cursor: pointer;
+        animation: moveInbtt 2s ease;
+        text-decoration: none;
+        color: $color-black;
+    }
+
+    &:hover {
+        opacity: 1;
+        color: $color-primary;
+        background-color: rgba($color-primary-dark, .2);
+        border: .1rem solid $color-primary;
+        transition: all .2s;
+    }
+
+}
+
+// hide by default
+.btt__icon {
+    display: none;
+}
+
+// show when btt is active
+.btt__sticky .btt__icon {
+    // icon size
+    font-size: 3rem;
+    display: inline-block;
+}

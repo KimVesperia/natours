@@ -1,0 +1,55 @@
+// Base
+
+/* universal selector */
+/* all elements + all pseudo elements */
+*,
+*::after,
+*::before {
+    /* remove all the default margins and paddings */
+    margin: 0;
+    padding: 0;
+    /* inherit from body and apply everywhere  */
+    box-sizing: inherit;
+}
+
+html {
+    // this defines what 1rem is
+    /* root font size */
+    /* 1rem = 10px */
+    /* font-size: 10px; */
+    /* use % better for users accessibility */
+    /* 10px we want this/16px default = 0,625 * 100 = 62.5% */
+    font-size: 62.5% ; //1rem = 10px; 10px/16px = 62.5%
+
+    // media query mixin
+    // Desktop first: big to low because last one will apply
+    @include respond(big-desktop) { // min-width > 1800
+        font-size: 75%; //1rem = 12px, 12/16 = 75%
+    }
+
+    @include respond(tab-land) { // max-width < 1200
+        font-size: 56.25%; //1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) { // max-width < 900
+        font-size: 50%; //1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(phone) { // max-width < 600
+        // font-size: 31.25%; //1rem = 5px, 4/16 = 31.25%
+    }
+}
+
+/* inheritance inside body */
+body {
+    /* borders and paddings removed from width and height  */
+    box-sizing: border-box;
+    /* white border effect on the entire body */
+    // padding: 3rem;
+}
+
+// highlight text
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}

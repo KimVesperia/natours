@@ -1,0 +1,242 @@
+// NAV
+.navigation {
+    // invisible just for toggle
+    &__checkbox {
+        display: none;
+    }
+
+    &__btn {
+        // infront the background gradient
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+        cursor: pointer;
+        position: fixed;
+        // same as background but smaller size
+        top: 6rem;
+        right: 6rem;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
+
+        @include respond(phone) {
+            top: 3rem;
+            right: 3rem;
+        }
+
+        &:hover {
+            @include zoom-logo;
+        }
+    }
+
+    &__background {
+        // behind the white btn
+        // circle smaller than btn circle
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        // only when position defined
+        z-index: 1000;
+
+        // hide by default
+        // transform: scale(80);
+        transition: transform .8s cubic-bezier(0.83, 0, 0.17, 1);
+
+        @include respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        @include respond(phone) {
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+    }
+
+    // when collapse fill screen
+    // nav list
+    &__nav {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1500;
+
+        opacity: 0;
+        // hide by default
+        visibility: hidden;
+        width: 0%;
+        transition: all .8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    // center list
+    &__list {
+        // mixin center
+        @include absolute-center;
+        list-style: none;
+        text-align: center;
+        width: inherit;
+    }
+
+    &__item {
+        margin: 1rem;
+
+        @include respond(phone) {
+            border-bottom: .1rem solid rgba($color-green, .5);
+        }
+
+    }
+
+    &__logo {
+        width: 15rem;
+
+        /* logo animation hover */
+        &:hover {
+            @include zoom-logo;
+        }
+    }
+
+    &__link {
+
+        &:link,
+        &:visited {
+            // for marg and pads
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+    
+            // solid gradient for animate
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            // to animate
+            // push the gradient away from screen
+            // +20% for the deg
+            background-size: 250%;
+            transition: all .4s;
+
+            // numbers
+            span {
+                margin-right: 1.5rem;
+                // display: inline-block;
+            }
+        }
+
+        &:hover,
+        &:active {
+            // animate the background
+            // pull the background back to screen
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+
+    }
+
+    //  FUNCTIONALITY
+    // if checkbox is checked, then general sibling the background to popup
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+
+    // nav list visible
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        // animate
+        width: 100%;
+        visibility: visible;
+    }
+
+    // ICON
+    &__icon {
+        // for the absolute pseudo element
+        position: relative;
+        margin-top: 3.5rem;
+        // icon, before and after pseudo element
+        // 3 strokes for each selector
+        &,
+        &::before,
+        &::after {
+            display: inline-block;
+            width: 3rem;
+            // never change
+            height: 2px;
+            background-color: $color-grey-dark-3;
+        }
+
+        &::before,
+        &::after {
+            // must
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        // move strokes up
+        // top stroke
+        &::before {
+            top: -1rem;
+            // transform-origin: center;
+        }
+
+        // last stroke
+        &::after {
+            top: 1rem;
+        }
+
+    }
+
+    // top stroke
+    &__btn:hover &__icon::before {
+
+    }
+
+    // middle stroke
+    &__btn:hover &__icon {
+        
+    }
+
+    // last stroke
+    &__btn:hover &__icon::after {
+
+    }
+
+    // adjacent sibling
+    &__checkbox:checked + &__btn &__icon {
+        background-color: transparent;
+        transition: all .5s;
+    }
+
+    // hover when checked
+    &__checkbox:checked + &__btn:hover &__icon {
+        transform: rotate(180deg);
+    }
+
+    // cross
+    &__checkbox:checked + &__btn &__icon::before {
+        // move to 0 to replace middle
+        top: 0;
+        // 45deg + more for flashy animation
+        transform: rotate(135deg);
+    }
+
+    &__checkbox:checked + &__btn &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+
+}

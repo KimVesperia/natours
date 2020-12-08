@@ -1,0 +1,104 @@
+// STORY
+
+.wrapper-shadow {
+    filter: drop-shadow(0 1rem 3rem rgba($color-black, .1));
+}
+
+.story {
+    // width: 75%;
+    // block element centralize
+    margin: 0 auto;
+    // not work with clip path
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6);
+    border-radius: $border-radius-default;
+    overflow: hidden;
+    padding: 6rem;
+    // add rem from shape transform
+    padding-left: 9rem;
+    font-size: $font-size-default;
+    // skew
+    // transform: skewX(-12deg);
+    // alternative
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include respond(phone) {
+        clip-path: none;
+        padding-left: 4rem;
+    }
+
+    // img
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        // must float and dimensions for shape
+        float: left;
+        // fallback
+        overflow: hidden;
+        // add spacing without margins and skew it back
+        // does not work yet in parent element
+        transform: translateX(-3rem);
+        // for the caption
+        position: relative;
+        border-radius: 50%;
+
+        @supports (clip-path: circle(50% at 50% 50%)) or (-webkit-clip-path: circle(50% at 50% 50%)) {
+            clip-path: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
+
+        @include respond(phone) {
+            float: none;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+            shape-outside: none;
+            transform: none;
+        }
+        
+    }
+
+    &__img {
+        // dimension of the parent
+        height: 100%;
+        // pos the img
+        // use % for img
+        transform: translateX(-15%) scale(1.4);
+        transition: all .3s;
+    }
+
+    // when hover the shape.. i want the img to..
+    &:hover &__img {
+        transform: translateX(-15%) scale(1);
+        // negative = darker / positive = lighter
+        filter: blur(.3rem) brightness(75%);
+    }
+
+    &__caption {
+        // centralize
+        position: absolute;
+        top: 50%;
+        left:50%;
+        // hide
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .3s;
+    }
+
+    // when hover the shape.. i want the caption to..
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+}

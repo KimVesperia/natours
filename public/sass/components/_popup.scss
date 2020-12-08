@@ -1,0 +1,146 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .9);
+    position: fixed;
+    // before the nav
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+
+    // feature querie if support than apply:
+    @supports(backdrop-filter: blur(1rem)) or (-webkit-backdrop-filter: blur(1rem)) {
+        backdrop-filter: blur(1rem);
+        background-color: rgba($color-black, .3);
+    }
+
+    // white box
+    &__content {
+        @include absolute-center;
+        // height: 70vh;
+        width: 75%;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: $border-radius-default;
+        overflow: hidden;
+        // table to make childs height the same
+        display: table;
+
+        // hide by default and scale effect
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.5);
+        // delay effect
+        transition: all .4s .2s;
+
+        @include respond(tab-port) {
+            display: block;
+        }
+    }
+
+    &__left {
+        // split with left and right
+        width: 33.333333%;
+        display: table-cell;
+        vertical-align: middle;
+        background: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+
+        @include respond(tab-port) {
+            width: 100%;
+            display: block;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    &__right {
+        width: 66.6666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        background-color: $color-white;
+
+        @include respond(tab-port) {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+
+        @include respond(tab-port) {
+            display: inline-block;
+            width: 50%;
+            height: 20rem;
+        }
+
+        &--1 {
+            @include respond(tab-port) {
+                float: left;
+            }
+        }
+
+        &--2 {   
+            @include respond(tab-port) {
+                float: right;
+            }
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        // column for txt
+        column-count: 2;
+        // default 1em = 14px(font size)
+        column-gap: 4rem;
+        // gap border
+        column-rule: .1rem solid $color-grey-light-3;
+
+        hyphens: auto;
+
+        @include respond(phone) {
+            column-count: 1;
+        }
+    }
+
+    // open state
+    &:target {
+        // when btn popup is targeted
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // popup target, then style content
+    &:target &__content {
+        // back to normal
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    // close btn
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            // remove txt
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

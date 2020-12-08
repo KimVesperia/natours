@@ -1,0 +1,137 @@
+// Buttons
+
+// extends
+%btn-default {
+    /* control width and height, margins and paddings respected and no linebreak */
+    display: inline-block;
+    text-decoration: none;
+    transition: all .2s;
+    font-size: $font-size-default;
+    /* reference for the after pseudo element absolute */
+    position: relative;
+
+    // CHANGE FOR THE <BUTTON> ELEMENT
+    border: none;
+    cursor: pointer;
+}
+
+.btn {
+
+    /* pseudo class is a special state of the selector */
+    /* link is for a tag links and visited for after clicked */
+    &, // <button>
+    &:link,
+    &:visited {
+        @extend %btn-default;
+
+        text-transform: uppercase;
+        padding: 1.5rem 4rem;
+        /* high number for the shape */
+        border-radius: 10rem;
+        /* pseudo states transition */
+        transition: all .2s;
+    }
+
+    &:hover {
+        transform: translateY(-.3rem);
+        /* x-axis, y-axis, blur, color and opacity */
+        box-shadow: $box-shadow-btn-hover;
+
+        /* after pseudo element after hover */
+        &::after {
+            /* scale x and y axis differently */
+            transform: scaleX(1.4) scaleY(1.6);
+            /* cool fade out animation */
+            opacity: 0;
+        }
+    }
+
+    /* click */
+    &:active,
+    &:focus {
+        // remove default outline
+        outline: none;
+        transform: translateY(-.01rem);
+        /* reduce shadow for click effect */
+        box-shadow: $box-shadow-btn-active;
+    }
+
+    // white button
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    // green button
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+    /* pseudo elements, after: put a hidden element and put it behind */
+    /* https://www.w3schools.com/css/css_pseudo_elements.asp */
+    &::after {
+        /* for after pseudo element need: */
+        /* need to specifiy content and display */
+        /* can be empty */
+        content: "";
+        /* same display as the btn element */
+        display: inline-block;
+        /* child of the btn, 100% is same dimensions */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+
+        /* put behind the btn */
+        /* reference the relative of the main btn */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* order */
+        z-index: -1;
+        /* transition for the hover after pseudo element */
+        transition: all .4s;
+    }
+
+    /* header btn */
+    /* animate move in */
+    &--animated {
+        animation: moveInBottom 1s ease-out .75s;
+        /* animation at 0% styles apply before start */
+        /* opacity start at 0 etc.. */
+        animation-fill-mode: backwards;
+    }
+
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        @extend %btn-default; 
+
+        color: $color-primary;
+        border-bottom: .1rem solid $color-primary;
+        padding: 1rem;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: $box-shadow-btn-hover;
+        // translate = change position
+        transform: translateY(-.2rem);
+    }
+
+    &:active {
+        box-shadow: $box-shadow-btn-active;
+        transform: translateY(0);
+    }
+}
