@@ -85,3 +85,20 @@
         transform: translate(0);
     }
 }
+
+// for icons
+@keyframes fadeInicon {
+    /* browser performance best with only 2 different properties max */
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        /* transform: translateX(0px); */
+    }
+
+    100% {
+        /* default final state */
+        opacity: 1;
+    }
+}

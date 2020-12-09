@@ -198,6 +198,34 @@ ORDER: Base + typography > general layout + grid > page layout > component
   }
 }
 
+@-webkit-keyframes fadeInicon {
+  /* browser performance best with only 2 different properties max */
+  0% {
+    opacity: 0;
+  }
+  80% {
+    /* transform: translateX(0px); */
+  }
+  100% {
+    /* default final state */
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInicon {
+  /* browser performance best with only 2 different properties max */
+  0% {
+    opacity: 0;
+  }
+  80% {
+    /* transform: translateX(0px); */
+  }
+  100% {
+    /* default final state */
+    opacity: 1;
+  }
+}
+
 /* universal selector */
 /* all elements + all pseudo elements */
 *,
@@ -1138,6 +1166,19 @@ body {
 
 .form__radio-input:checked ~ .form__radio-label .form__radio-btn::after {
   opacity: 1;
+}
+
+.github {
+  display: none;
+  position: fixed;
+  right: 0;
+  z-index: 99;
+  width: 4rem;
+  top: 50%;
+}
+
+.github__logo {
+  width: 100%;
 }
 
 .popup {

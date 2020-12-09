@@ -25,11 +25,22 @@ $(document).ready(function() {
                 // reapply animation, because other wp
                 $(".btt__sticky").css("animation", "moveInbtt 2s ease");
             });
+
+            $(".js--wp-git").fadeIn("fast", function() {
+                $(".github").css("display", "inherit");
+                // reapply animation, because other wp
+                $(".github").css("animation", "moveInbtt 2s ease");
+            });
         } else {
             // remove the class when back on top with fade
             $(".js--wp-back").fadeOut("slow", function() {
                 $(this).removeClass("btt__sticky");
                 $(".btt__sticky").css("animation", "moveInbtt 2s ease");
+            });
+
+            $(".js--wp-git").fadeOut("slow", function() {
+                $(".github").css("display", "none");
+                $(".github").css("animation", "moveInbtt 2s ease");
             });
         }
     }, {
